@@ -1,0 +1,14 @@
+# Archivos sensibles
+.env
+estado.json
+titulo.log
+
+# Node modules
+node_modules/
+
+# Logs generales
+*.log
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db

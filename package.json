@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "puppeteer": "^24.6.0",
+    "resend": "^4.2.0"
+  }
+}
