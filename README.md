@@ -76,17 +76,37 @@ Te devolverá algo como:
 /Users/matiasturra/.nvm/versions/node/v18.12.0/bin/node
 ```
 
-### 2. Editá tu crontab
+### 2. Crear un script para ejecutar con entorno NVM
+
+Creá un archivo `run-check.sh` con el siguiente contenido:
+
+```
+#!/bin/bash
+source ~/.nvm/nvm.sh
+nvm use 18
+cd /Users/matiasturra/Projects/check-titulo
+node check-titulo.js
+```
+
+Hacelo ejecutable:
+
+```
+chmod +x run-check.sh
+```
+
+### 3. Editá tu crontab
 
 ```
 crontab -e
 ```
 
-### 3. Agregá una línea como esta (por ejemplo, todos los días a las 11:15):
+### 4. Agregá una línea como esta (por ejemplo, todos los días a las 11:15):
 
 ```
-15 11 * * * /Users/matiasturra/.nvm/versions/node/v18.12.0/bin/node /Users/matiasturra/Projects/check-titulo/check-titulo.js >> /Users/matiasturra/Projects/check-titulo/titulo.log 2>&1
+15 11 * * * /Users/matiasturra/Projects/check-titulo/run-check.sh >> /Users/matiasturra/Projects/check-titulo/titulo.log 2>&1
 ```
+
+Esto asegura que se cargue correctamente el entorno NVM y las variables `.env` cuando el cron se ejecute.
 
 ---
 
@@ -102,6 +122,7 @@ El archivo `.env` contiene información sensible y **no debe subirse al reposito
 check-titulo-utn/
 │
 ├── check-titulo.js       # Script principal
+├── run-check.sh          # Script para cron (ignorado por Git)
 ├── .env                  # Variables sensibles (no se sube)
 ├── .gitignore            # Ignora archivos privados
 ├── package.json          # Dependencias
@@ -119,6 +140,7 @@ Asegurate de tener este archivo para evitar subir archivos sensibles:
 estado.json
 titulo.log
 node_modules/
+run-check.sh
 ```
 
 ---

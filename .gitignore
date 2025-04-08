@@ -2,6 +2,7 @@
 .env
 estado.json
 titulo.log
+run-check.sh
 
 # Node modules
 node_modules/
